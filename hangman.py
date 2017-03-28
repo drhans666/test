@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
 import os
 import sys
+import random
 os.system('cls')
 
 
 def pobieranie_i_weryfikacja():
-    slowo = 'samolot'
-
+    slowa = ( 'samolot', 'makaron', 'forteca' )
+    slowo = random.choice(slowa)
     while True:
         litera = raw_input("Wpisz pojedyncza litere: ")
         # pkt 1*
