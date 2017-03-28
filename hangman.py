@@ -6,11 +6,11 @@ os.system('cls')
 
 
 def pobieranie_i_weryfikacja():
-    slowa = ( 'samolot', 'makaron', 'forteca' )
-    slowo = random.choice(slowa)
+
+    slowo = 'transport'
     while True:
         litera = raw_input("Wpisz pojedyncza litere: ")
-        # pkt 1*
+
         # liczy czy faktycznie została wpisana pojedyncza litera
 
         # walidacja
@@ -19,16 +19,20 @@ def pobieranie_i_weryfikacja():
             continue
         break
 
-    return slowo, litera
+    return slowo, litera,
 
 
 def main():
+    zycia = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     odganiete = 0
     while True:
         slowo, litera = pobieranie_i_weryfikacja()
 
         if litera not in slowo:
+            del zycia[1]
             print '0 wystapien. idz umrzyj'
+            if len(zycia) < 2:
+                sys.exit('Przegrales')
             continue
 
         # wykonanie
