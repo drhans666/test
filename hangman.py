@@ -2,76 +2,64 @@
 import os
 import sys
 import random
-os.system('cls')
-print 'WITAJ W MOJEJ WERSJI HANGMAN. UWAGA PRODUKT RAKOTWORCZY'
-
-slowo = random.choice(['samolot', 'kelnerka', 'komputer', 'makaron', 'motor', 'transport' ])
-
-def pobieranie_i_weryfikacja():
 
 
+def daj_litere():
     while True:
-
         litera = raw_input("Wpisz pojedyncza litere: ")
 
-
-
-
-        # walidacja
         if len(litera) != 1:
             print 'miala byc jedna litera'
             continue
-        break
-
-    return slowo, litera,
-
+        return litera
+    
+    
+def sprawdz(litera, slowo, trafione):
+    if litera not in slowo:
+        print 'BRAK WYSTAPIEN.'
+        return False
+    elif litera in trafione:
+        print 'BYLO. NIE MA CWANIAKOWANIA.'
+        return False
+    return True
 
 def main():
-    zycia = [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
-    #odpowiedzialne za zliczanie trafien
-    odganiete = 0
-    #odpowiedzialna za wyswietlanie trafien
-    trafiona = ' '
-    #przechowuje odgadniete litery
-    powtorki = []
+    os.system('cls')
+    print 'WITAJ W MOJEJ WERSJI HANGMAN. UWAGA PRODUKT RAKOTWORCZY!'
 
+    slowa = ['samolot', 'kelnerka', 'komputer', 'makaron', 'motor', 'transport' ]
+    slowo = random.choice(slowa)
+
+    zycia = 11
+    #odpowiedzialne za zliczanie trafien
+    do_odgadniecia = len(set(slowo))
+    #odpowiedzialna za wyswietlanie trafien
+    trafione = []
 
     while True:
-        slowo, litera = pobieranie_i_weryfikacja()
-        #wszystkie skutki pomylek
-        if litera not in slowo:
-            del zycia[1]
-            print 'BRAK WYSTAPIEN. POZOSTALO', len(zycia) - 1, 'ZYC'
-        #odejmowanie zyc za powtarzanie liter
-        if litera in powtorki:
-            del zycia[1]
-            print 'BYLO. NIE MA CWANIAKOWANIA. POZOSTALO', len(zycia) - 1, 'ZYC'
+        # pobranie danych i weryfikacja
+        litera = daj_litere()
 
+        if not sprawdz(litera, slowo, trafione):
+            zycia -= 1
+            print 'POZOSTALO {} ZYC'.format(zycia)
             if len(zycia) == 1:
-                print
-                sys.exit('przegrales')
-
+                print 'przegrales zycie'
+                sys.exit()
             continue
 
-        # wykonanie
-        trafiona += litera
-        #dodanie liter do listy poprawnie odgadnietych
-        if litera in slowo:
-            powtorki.append(litera)
-        print slowo.count(litera), ('wystapienia')
-        odganiete = odganiete + slowo.count(litera)
-        #wypisywanie zgadnietych liter
+        # policzenie wyników
+        trafione.append(litera)
+        
+        # wypisywanie zgadnietych liter
+        print '{} wystapienia'.format(slowo.count(litera))
         for char in slowo:
-            if char in trafiona:
-                print char
+            print char if char in trafione else '.'
 
-            else:
-
-                print '.'
-
-        if odganiete >= len(slowo):
+        do_odgadniecia -= 1
+        if do_odgadniecia == 0:
             print 'ODGADLES. GRATULUJE'
-            exit()
+            sys.exit()
 
 
 if __name__ == '__main__':
