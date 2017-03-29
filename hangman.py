@@ -3,15 +3,19 @@ import os
 import sys
 import random
 os.system('cls')
+print 'WITAJ W MOJEJ WERSJI HANGMAN. UWAGA PRODUKT RAKOTWORCZY'
 
+slowo = random.choice(['samolot', 'kelnerka', 'komputer', 'makaron', 'motor', 'transport' ])
 
 def pobieranie_i_weryfikacja():
 
-    slowo = 'transport'
+
     while True:
+
         litera = raw_input("Wpisz pojedyncza litere: ")
 
-        # liczy czy faktycznie została wpisana pojedyncza litera
+
+
 
         # walidacja
         if len(litera) != 1:
@@ -23,35 +27,53 @@ def pobieranie_i_weryfikacja():
 
 
 def main():
-    zycia = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    zycia = [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+    #odpowiedzialne za zliczanie trafien
     odganiete = 0
+    #odpowiedzialna za wyswietlanie trafien
+    trafiona = ' '
+    #przechowuje odgadniete litery
+    powtorki = []
+
+
     while True:
         slowo, litera = pobieranie_i_weryfikacja()
         #wszystkie skutki pomylek
         if litera not in slowo:
             del zycia[1]
-            print '0 wystapien. idz umrzyj'
-            print ('POZOSTALO', len(zycia), 'ZYC')
-            if len(zycia) < 1:
-                sys.exit('Przegrales')
+            print 'BRAK WYSTAPIEN. POZOSTALO', len(zycia) - 1, 'ZYC'
+        #odejmowanie zyc za powtarzanie liter
+        if litera in powtorki:
+            del zycia[1]
+            print 'BYLO. NIE MA CWANIAKOWANIA. POZOSTALO', len(zycia) - 1, 'ZYC'
+
+            if len(zycia) == 1:
+                print
+                sys.exit('przegrales')
+
             continue
 
         # wykonanie
-        print 'brawo'
+        trafiona += litera
+        #dodanie liter do listy poprawnie odgadnietych
+        if litera in slowo:
+            powtorki.append(litera)
         print slowo.count(litera), ('wystapienia')
         odganiete = odganiete + slowo.count(litera)
+        #wypisywanie zgadnietych liter
+        for char in slowo:
+            if char in trafiona:
+                print char
+
+            else:
+
+                print '.'
+
         if odganiete >= len(slowo):
-            print 'wygrales'
+            print 'ODGADLES. GRATULUJE'
             exit()
 
 
 if __name__ == '__main__':
     # uruchom glowny program tylko jak ten skrypt jest odpalony z python a nie importowany z innego pliku
     main()
-
-
-#Do zrobienia:
-#1. losowe wybieranie słów
-#2. wyswietlanie odgadnietych liter
-#3. brak możliwości ponownego odgadniecia litery
-#4. Powiazac grafike wisielca z iloscia zyc
