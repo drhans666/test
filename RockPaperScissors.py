@@ -86,6 +86,3 @@ weapons = ['paper', 'rock', 'scissors']
 arena = ()
 
 
-getPlayerChoice()
-getComputerChoice()
-assignChoicesToArena(choice2,arena)
