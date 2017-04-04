@@ -48,7 +48,7 @@ def getComputerChoice():
 
     return choice2
 
-def assignChoicesToArena(choice, choice2, arena):
+def assignChoicesToArena(arena):
     arena.append(choice)
     print('Player:', ART[choice])
     arena.append(choice2)
