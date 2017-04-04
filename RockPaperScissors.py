@@ -1,36 +1,32 @@
 import random
 import sys
 import os
+import time
 
 ART = ['''
-    
+
  _/----\     
 /rock_' \ 
 | \   \ |
  \  \_/ /
   \_-__/ ''',
 
-'''
+       '''
+        _______
+       /      |
+       |paper |
+       |      |
+       -------/''',
 
- _______
-/      |
-|paper |
-|      |
--------/''',
-
-'''
-
-scissors
- \ /
-  X
- / \ 
-O   O''']
-
-
+       '''
+       scissors
+        \ /
+         X
+        / \ 
+       O   O''']
 
 
 def getPlayerChoice():
-
     while True:
         print('Make you choice: paper, rock, scissors')
         chosenWeapon = input()
@@ -51,7 +47,7 @@ def getComputerChoice():
     return choice2
 
 
-def assignChoicesToArena(arena,choice,choice2):
+def assignChoicesToArena(arena, choice, choice2):
     arena.append(choice)
     print('Player:', ART[choice])
     arena.append(choice2)
@@ -60,11 +56,7 @@ def assignChoicesToArena(arena,choice,choice2):
     return arena
 
 
-
-
-
-def choiceConfront(arena,playerPoints, computerPoints):
-
+def choiceConfront(arena, playerPoints, computerPoints):
     if arena == [0, 0]:
         print('draw')
     elif arena == [0, 1]:
@@ -90,37 +82,41 @@ def choiceConfront(arena,playerPoints, computerPoints):
     elif arena == [2, 2]:
         print('draw')
 
-
     return playerPoints, computerPoints
 
 
 def playAgain():
-
     print('Do you want to play again? (yes or no)')
     return input().lower().startswith('y')
 
+
 os.system('clear')
+print('ROCK PAPER SCISSORS 5000 by Hans')
+time.sleep(1)
 weapons = ['rock', 'paper', 'scissors']
 playerPoints = 0
 computerPoints = 0
 
 while True:
     arena = []
-    playerPoints = choiceConfront(arena,playerPoints, computerPoints)
-    computerPoints = choiceConfront(arena,playerPoints, computerPoints)
+    time.sleep(0.5)
     choice = getPlayerChoice()
     choice2 = getComputerChoice()
     assignChoicesToArena(arena, choice, choice2)
     choiceConfront(arena, playerPoints, computerPoints)
-    print('Player Points:',playerPoints)
+    playerPoints, computerPoints = choiceConfront(arena, playerPoints, computerPoints)
+    print('Player Points:', playerPoints)
     print('Computer Points:', computerPoints)
 
     if playerPoints == 3:
         print('Congratulations, You won!')
+        playerPoints = 0
+        computerPoints = 0
+        if not playAgain():
+            sys.exit()
     elif computerPoints == 3:
         print('You Lost. Better Luck Next Time!')
-        break
-
-    playAgain()
-
-sys.exit()
+        playerPoints = 0
+        computerPoints = 0
+        if not playAgain():
+            sys.exit()
