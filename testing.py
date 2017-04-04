@@ -25,7 +25,7 @@ weapons = ['rock', 'paper', 'scissors']
 arena = []
 
 
-
+#player choses weapon + assignation to arena
 while True:
     print('Make you choice: rock, paper, scissors')
     chosenWeapon = input()
@@ -39,10 +39,12 @@ while True:
         print('Player:', ART[choice])
         break
 
+#computer weapon randomly assigned to arena
 choice2 = random.randint(0, len(weapons) -1)
 arena.append(choice2)
 print('Computer:', ART[choice2])
 
+#what weapones do to each other (0-rock, 1-paper, 3-scissors
 
 if arena == [0, 0]:
     print('draw')
