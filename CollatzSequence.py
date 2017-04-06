@@ -20,6 +20,6 @@ while True:
         print('ok')
         break
     else:
-        collatz(int(input()))
+        collatz(number)
 
 
