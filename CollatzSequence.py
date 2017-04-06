@@ -1,25 +1,23 @@
-
+#Function detects if input number is even or odd, then adds Collatz sequence (even/2 ; 3 * odd + 1)
 def collatz(number):
-    number = input()
     if number % 2 == 0:
-        print('even')
         return number // 2
     else:
-        print('odd')
         return 3 * number + 1
 
 
-
+#adds oportunity to enter number
 print('Enter number:')
-collatzOutput = int(input)
-print(collatzOutput)
+result = int(input())
+print(result)
 
-
+#loop checks if result is the end of sequence (1), if not result goes thru collatz function again
 while True:
-    if collatzOutput == 1:
-        print('ok')
+    if result == 1:
+        print('End of Sequence')
         break
     else:
-        collatz(number)
+        result = collatz(result)
+        print(result)
 
 
