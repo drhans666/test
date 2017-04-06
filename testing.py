@@ -45,25 +45,34 @@ arena.append(choice2)
 print('Computer:', ART[choice2])
 
 #what weapones do to each other (0-rock, 1-paper, 3-scissors
+playerPoints = 0
+computerPoints = 0
 
 if arena == [0, 0]:
     print('draw')
 elif arena == [0, 1]:
     print('paper wins')
+    computerPoints += 1
 elif arena == [0, 2]:
     print('rock wins')
+    playerPoints += 1
 elif arena == [1, 0]:
     print('paper wins')
+    playerPoints += 1
 elif arena == [1, 1]:
     print('draw')
 elif arena == [1, 2]:
     print('scissors wins')
+    computerPoints += 1
 elif arena == [2, 0]:
     print('rock wins')
+    computerPoints += 1
 elif arena == [2, 1]:
     print('scissors wins')
+    playerPoints += 1
 elif arena == [2, 2]:
     print('draw')
 print(arena)
 
-
+print(playerPoints)
+print(computerPoints)

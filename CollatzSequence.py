@@ -1,5 +1,5 @@
 
-def collatz():
+def collatz(number):
     if number % 2 == 0:
         print('even')
         return number // 2
@@ -11,7 +11,7 @@ def collatz():
 
 print('Enter number:')
 number = int(input())
-collatzOutput = collatz()
+collatzOutput = collatz(int(input()))
 print(collatzOutput)
 
 
@@ -20,6 +20,6 @@ while True:
         print('ok')
         break
     else:
-        collatz(collatzOutput)
+        collatz(int(input()))
 
 
