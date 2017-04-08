@@ -30,6 +30,7 @@ def movementX(coord, axisX):
     elif coord == 'right':
         axisX += 1
     return axisX
+
 #Limits horizontal movement in zone
 def limitY(axisY):
     while True:
@@ -40,6 +41,7 @@ def limitY(axisY):
         else:
             break
     return axisY
+
 #Limits vertical movement in zone
 def limitX(axisX):
     while True:
