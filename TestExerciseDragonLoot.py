@@ -8,8 +8,7 @@ def displayInventory(inv):
         item_total += numbers
     print('Total items: ' + str(item_total))
 
-def addToInventory(inv, addedItems):
-    addedItems = 0
+def addToInventory(inv, dragonLoot):
     for i in dragonLoot:
         if i in inv:
             inv[i] = inv[i] + 1
